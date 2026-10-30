@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff0a8">
+<title>A Little Question for You 🌷</title>
+<style>
+  :root { --yellow:#fff0a8; --butter:#ffe477; --pink:#f7a8c4; --deep:#b94f7c; --ink:#70485b; --cream:#fffaf0; }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; min-height:100vh; padding:28px 16px 40px;
+    display:flex; justify-content:center; align-items:center;
+    background: radial-gradient(circle at 15% 15%, #fff9d7 0 9%, transparent 10%),
+                radial-gradient(circle at 90% 80%, #ffe0eb 0 8%, transparent 9%),
+                linear-gradient(145deg, #fff5bd, #ffe4ec);
+    color:var(--ink); font-family:"Trebuchet MS", Arial, sans-serif;
+  }
+  .page { width:min(100%, 680px); text-align:center; }
+  .card {
+    position:relative; overflow:hidden; padding:clamp(22px,5vw,42px);
+    border:3px solid #fff; border-radius:30px;
+    background:rgba(255,250,240,.93);
+    box-shadow:0 18px 50px rgba(174,103,130,.18);
+  }
+  .sparkle { position:absolute; color:#e9bd47; font-size:23px; opacity:.8; }
+  .s1{top:18px;left:22px}.s2{top:45px;right:25px}.s3{bottom:20px;left:28px}.s4{bottom:35px;right:24px}
+  .eyebrow { display:inline-block; padding:8px 15px; border-radius:99px; background:#fff0b9; color:#a36a35; font-size:12px; letter-spacing:2px; text-transform:uppercase; }
+  h1 { margin:15px 0 8px; color:var(--deep); font-family:Georgia,serif; font-size:clamp(30px,7vw,48px); line-height:1.12; }
+  .subtitle { margin:0 auto 12px; max-width:470px; line-height:1.7; font-size:15px; }
+  .bouquet { display:block; width:min(100%,390px); height:auto; margin:4px auto 12px; filter:drop-shadow(0 9px 8px rgba(140,80,100,.12)); }
+  .message-input {
+    width:100%; min-height:90px; resize:vertical; margin:14px 0 18px; padding:14px 16px;
+    border:2px dashed #efb2c8; border-radius:17px; background:#fff7fa;
+    color:var(--ink); font:inherit; line-height:1.5; outline:none;
+  }
+  .message-input:focus { border-style:solid; border-color:#d982a7; }
+  .question { margin:4px 0 18px; color:#a74873; font: bold clamp(21px,5vw,28px) Georgia,serif; }
+  .buttons { display:flex; justify-content:center; gap:13px; flex-wrap:wrap; }
+  button { border:0; border-radius:999px; padding:13px 27px; font-size:16px; font-weight:bold; cursor:pointer; transition:transform .18s, box-shadow .18s; }
+  button:hover { transform:translateY(-2px); box-shadow:0 7px 16px #c88a9c55; }
+  button:focus-visible { outline:3px solid #9b5c78; outline-offset:3px; }
+  .yes { background:#e987ad; color:white; }
+  .no { background:#fff0b9; color:#8d633e; }
+  .result { display:none; margin:22px auto 0; max-width:510px; padding:21px; border-radius:20px; background:#fff0f5; border:1px solid #f3c2d3; line-height:1.75; text-align:left; white-space:pre-line; }
+  .result h2 { margin:0 0 9px; color:var(--deep); font: bold 25px Georgia,serif; text-align:center; }
+  .surprise { display:none; margin-top:18px; padding:20px; border-radius:20px; background:#fff8d9; border:1px solid #f4dc8a; animation:pop .45s ease both; }
+  .surprise .big { font-size:34px; letter-spacing:5px; }
+  .surprise p { margin:8px 0 0; line-height:1.6; }
+  .tiny { margin:19px 0 0; color:#a77b8c; font-size:12px; }
+  .petal { position:fixed; top:-25px; z-index:5; pointer-events:none; animation:fall linear forwards; }
+  @keyframes fall { to { transform:translateY(110vh) rotate(650deg); opacity:.1; } }
+  @keyframes pop { from {opacity:0;transform:scale(.88)} to {opacity:1;transform:scale(1)} }
+  @media(max-width:420px){ .card{padding:24px 17px} button{min-width:120px} }
+</style>
+</head>
+<body>
+<main class="page">
+  <section class="card">
+    <span class="sparkle s1">✦</span><span class="sparkle s2">✧</span>
+    <span class="sparkle s3">✿</span><span class="sparkle s4">✦</span>
+    <span class="eyebrow">a little something for you</span>
+    <h1>For Someone Special 🌷</h1>
+    <p class="subtitle">A little bouquet, a little courage, and one question I've been wanting to ask...</p>
+
+    <!-- Original, editable floral SVG illustration: pink tulips and lilies -->
+    <svg class="bouquet" viewBox="0 0 400 310" role="img" aria-label="A cute bouquet of pink tulips and lilies wrapped in yellow paper">
+      <defs>
+        <linearGradient id="wrap" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffe99b"/><stop offset="1" stop-color="#f6c95e"/></linearGradient>
+        <linearGradient id="pink" x1="0" x2="1"><stop stop-color="#ffd0df"/><stop offset="1" stop-color="#e978a5"/></linearGradient>
+      </defs>
+      <!-- stems -->
+      <g fill="none" stroke="#6f9d69" stroke-width="5" stroke-linecap="round">
+        <path d="M195 245 Q150 150 112 75"/><path d="M200 245 Q205 130 205 58"/>
+        <path d="M205 245 Q260 145 292 85"/><path d="M195 245 Q120 170 65 132"/>
+        <path d="M205 245 Q280 190 337 140"/><path d="M200 245 Q175 145 160 112"/>
+      </g>
+      <!-- leaves -->
+      <g fill="#8fbd83">
+        <path d="M170 205 Q105 165 112 205 Q140 225 170 205Z"/><path d="M220 202 Q277 160 281 194 Q256 220 220 202Z"/>
+        <path d="M184 175 Q130 140 135 169 Q154 190 184 175Z"/><path d="M230 174 Q275 125 280 157 Q262 184 230 174Z"/>
+        <path d="M190 222 Q142 202 151 230 Q171 242 190 222Z"/>
+      </g>
+      <!-- tulips -->
+      <g>
+        <path d="M92 92 Q72 62 88 42 Q100 57 107 65 Q111 35 126 34 Q136 59 119 91 Q107 104 92 92Z" fill="url(#pink)" stroke="#d96f99" stroke-width="2"/>
+        <path d="M187 78 Q174 45 193 23 Q202 44 205 49 Q214 20 229 29 Q237 57 215 81 Q201 91 187 78Z" fill="#f49aba" stroke="#d96f99" stroke-width="2"/>
+        <path d="M277 108 Q262 77 281 57 Q290 75 295 81 Q303 52 317 62 Q324 91 304 112 Q290 121 277 108Z" fill="#ffc0d5" stroke="#d96f99" stroke-width="2"/>
+        <path d="M48 151 Q33 126 49 109 Q58 124 62 129 Q70 103 83 112 Q89 137 70 155 Q58 162 48 151Z" fill="#f6a9c5" stroke="#d96f99" stroke-width="2"/>
+      </g>
+      <!-- lilies -->
+      <g transform="translate(330 130)">
+        <g fill="#fff0f5" stroke="#e98caf" stroke-width="2">
+          <ellipse cx="0" cy="-19" rx="10" ry="26"/><ellipse cx="0" cy="-19" rx="10" ry="26" transform="rotate(60)"/>
+          <ellipse cx="0" cy="-19" rx="10" ry="26" transform="rotate(120)"/>
+          <ellipse cx="0" cy="-19" rx="10" ry="26" transform="rotate(180)"/>
+          <ellipse cx="0" cy="-19" rx="10" ry="26" transform="rotate(240)"/>
+          <ellipse cx="0" cy="-19" rx="10" ry="26" transform="rotate(300)"/>
+        </g><circle r="5" fill="#e8b84e"/><g stroke="#d5a34a" stroke-width="2"><path d="M0 0L0 -28 M0 0L24 -13 M0 0L-23 -14"/></g>
+      </g>
+      <g transform="translate(143 122) scale(.78)">
+        <g fill="#ffeaf1" stroke="#e98caf" stroke-width="2">
+          <ellipse cx="0" cy="-17" rx="9" ry="24"/><ellipse cx="0" cy="-17" rx="9" ry="24" transform="rotate(60)"/>
+          <ellipse cx="0" cy="-17" rx="9" ry="24" transform="rotate(120)"/><ellipse cx="0" cy="-17" rx="9" ry="24" transform="rotate(180)"/>
+          <ellipse cx="0" cy="-17" rx="9" ry="24" transform="rotate(240)"/><ellipse cx="0" cy="-17" rx="9" ry="24" transform="rotate(300)"/>
+        </g><circle r="5" fill="#e8b84e"/>
+      </g>
+      <!-- wrapping paper -->
+      <path d="M105 180 Q200 220 300 178 L260 290 Q200 312 145 286Z" fill="url(#wrap)" stroke="#e8c15e" stroke-width="2"/>
+      <path d="M105 180 Q198 238 300 178 Q255 230 205 246 Q145 226 105 180Z" fill="#fff0b8" stroke="#e8c15e" stroke-width="2"/>
+      <path d="M195 246 Q173 264 166 282 Q199 275 210 260 Q225 279 250 283 Q241 256 210 246Z" fill="#e987ad"/>
+      <path d="M202 251 Q179 235 169 249 Q177 269 202 256 Q225 275 241 256 Q231 239 202 251Z" fill="#f5a6c2" stroke="#d8759c" stroke-width="2"/>
+      <circle cx="201" cy="253" r="5" fill="#ffe7a0"/>
+    </svg>
+
+    <p class="question">Would you be my girlfriend? 💗</p>
+    <textarea class="message-input" id="personalMessage" placeholder="You can write your own little message here before sharing this website..."></textarea>
+    <div class="buttons">
+      <button class="yes" onclick="chooseYes()">Yes! 💖</button>
+      <button class="no" onclick="chooseNo()">No</button>
+    </div>
+
+    <div class="result" id="noResult" aria-live="polite">
+      <h2>It's okay. 🌷</h2>
+      It's okay. Take your time to think about it and decide. I'm not rushing you at all. I made this because I'm hoping I might get another chance to be with you and for you to be my girlfriend again. Whatever your decision is, I'll respect it.
+    </div>
+
+    <div class="result" id="yesResult" aria-live="polite">
+      <h2>You said yes?! 💞</h2>
+      Thank you so much for saying yes. I've been hoping for this for such a long time. I know it's a little unusual to ask you through a website that you access with an NFC card, but I genuinely enjoy making things with these cards, and I wanted to make this moment special.
+
+      I promise to keep working on myself and to become better—not just for you, but for us. I want us to grow together, rebuild our trust, and make our relationship stronger. I know things happened in the past, but I don't want us to repeat the same mistakes. I'll do my best to show you through my actions how much you mean to me.
+
+      Thank you for giving us another chance. Here's to making new, happier memories together. 💗
+    </div>
+
+    <div class="surprise" id="surprise">
+      <div class="big">🌷💌🌷</div>
+      <h2 style="color:#b94f7c;font-family:Georgia,serif;margin:8px 0">A little surprise!</h2>
+      <p>You just unlocked a pocketful of flowers, hugs-in-spirit, and a whole lot of happy hearts. 💕</p>
+      <div style="font-size:25px;margin-top:10px">💗 💛 💗 💛 💗</div>
+    </div>
+    <p class="tiny">made with a little courage and lots of flowers ♡</p>
+  </section>
+</main>
+<script>
+function hideResults() {
+  document.getElementById('noResult').style.display = 'none';
+  document.getElementById('yesResult').style.display = 'none';
+  document.getElementById('surprise').style.display = 'none';
+}
+function chooseNo() {
+  hideResults();
+  document.getElementById('noResult').style.display = 'block';
+}
+function chooseYes() {
+  hideResults();
+  document.getElementById('yesResult').style.display = 'block';
+  document.getElementById('surprise').style.display = 'block';
+  for (let i = 0; i < 24; i++) {
+    const petal = document.createElement('span');
+    petal.className = 'petal';
+    petal.textContent = ['🌸','💗','🌷','✨'][Math.floor(Math.random()*4)];
+    petal.style.left = Math.random()*100 + 'vw';
+    petal.style.animationDuration = (3 + Math.random()*3) + 's';
+    petal.style.fontSize = (15 + Math.random()*15) + 'px';
+    document.body.appendChild(petal);
+    setTimeout(() => petal.remove(), 6500);
+  }
+}
+</script>
+</body>
+</html>
